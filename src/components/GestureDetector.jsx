@@ -8,6 +8,7 @@ function GestureDetector({
   onResults,
   onStatusChange,
   statusLabel = 'idle',
+  stream,
   visible = true,
 }) {
   const videoRef = useRef(null)
@@ -29,20 +30,31 @@ function GestureDetector({
     }
 
     let cancelled = false
-    let camera
     let hands
+    let animationFrameId
+    let isSendingFrame = false
+    let ownedStream
 
     async function startDetection() {
       try {
-        onStatusChangeRef.current?.('loading')
+        onStatusChangeRef.current?.('camera-loading')
+
+        const activeStream = stream ?? (await requestCameraStream())
+        ownedStream = stream ? null : activeStream
+
+        if (cancelled) return
+
+        await attachStreamToVideo(videoRef.current, activeStream)
+
+        if (cancelled) return
+
+        onStatusChangeRef.current?.('model-loading')
 
         const [
           { Hands, HAND_CONNECTIONS },
-          { Camera },
           { drawConnectors, drawLandmarks },
         ] = await Promise.all([
           import('@mediapipe/hands'),
-          import('@mediapipe/camera_utils'),
           import('@mediapipe/drawing_utils'),
         ])
 
@@ -66,25 +78,71 @@ function GestureDetector({
           onResultsRef.current?.(results)
         })
 
-        camera = new Camera(videoRef.current, {
-          width: 640,
-          height: 480,
-          onFrame: async () => {
-            if (cancelled || !videoRef.current || videoRef.current.readyState < 2) return
-            await hands.send({ image: videoRef.current })
-          },
-        })
-
-        await camera.start()
-
         if (!cancelled) {
           onStatusChangeRef.current?.('active')
+          scheduleFrame()
         }
       } catch (error) {
         if (!cancelled) {
           console.error('GestureDetector failed to start:', error)
           onStatusChangeRef.current?.('error')
         }
+      }
+    }
+
+    async function requestCameraStream() {
+      if (!navigator.mediaDevices?.getUserMedia) {
+        throw new Error('getUserMedia is not available in this browser')
+      }
+
+      return navigator.mediaDevices.getUserMedia({
+        video: {
+          width: { ideal: 640 },
+          height: { ideal: 480 },
+          facingMode: 'user',
+        },
+        audio: false,
+      })
+    }
+
+    async function attachStreamToVideo(video, activeStream) {
+      if (!video) {
+        throw new Error('Video element is not ready')
+      }
+
+      if (video.srcObject !== activeStream) {
+        video.srcObject = activeStream
+      }
+
+      video.muted = true
+      video.playsInline = true
+      await video.play()
+    }
+
+    function scheduleFrame() {
+      animationFrameId = window.requestAnimationFrame(processFrame)
+    }
+
+    async function processFrame() {
+      if (cancelled || !videoRef.current || !hands) return
+
+      if (videoRef.current.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA && !isSendingFrame) {
+        isSendingFrame = true
+
+        try {
+          await hands.send({ image: videoRef.current })
+        } catch (error) {
+          if (!cancelled) {
+            console.error('GestureDetector frame failed:', error)
+            onStatusChangeRef.current?.('error')
+          }
+        } finally {
+          isSendingFrame = false
+        }
+      }
+
+      if (!cancelled) {
+        scheduleFrame()
       }
     }
 
@@ -116,11 +174,14 @@ function GestureDetector({
 
     return () => {
       cancelled = true
-      camera?.stop?.()
+      window.cancelAnimationFrame(animationFrameId)
       hands?.close?.()
+      if (ownedStream) {
+        ownedStream.getTracks().forEach((track) => track.stop())
+      }
       onStatusChangeRef.current?.('idle')
     }
-  }, [enabled])
+  }, [enabled, stream])
 
   return (
     <CameraView

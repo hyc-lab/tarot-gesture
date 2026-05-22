@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import GestureDetector from './components/GestureDetector'
 import GestureIndicator from './components/GestureIndicator'
 import StepDraw from './components/steps/StepDraw'
@@ -14,8 +14,15 @@ import { STEPS, useStepFlow } from './hooks/useStepFlow'
 function App() {
   const flow = useStepFlow()
   const { gestureState, handleResults, resetGesture } = useGesture()
+  const [cameraStream, setCameraStream] = useState(null)
   const [permissionError, setPermissionError] = useState('')
   const [detectorStatus, setDetectorStatus] = useState('idle')
+
+  useEffect(() => {
+    return () => {
+      cameraStream?.getTracks().forEach((track) => track.stop())
+    }
+  }, [cameraStream])
 
   const requestCameraPermission = useCallback(async () => {
     setPermissionError('')
@@ -35,7 +42,7 @@ function App() {
         audio: false,
       })
 
-      stream.getTracks().forEach((track) => track.stop())
+      setCameraStream(stream)
       flow.allowCamera()
     } catch (error) {
       setPermissionError(
@@ -106,6 +113,7 @@ function App() {
         <>
           <GestureDetector
             enabled={hasCamera}
+            stream={cameraStream}
             statusLabel={detectorStatus}
             visible={flow.currentStep !== STEPS.REVEAL}
             onResults={handleResults}
