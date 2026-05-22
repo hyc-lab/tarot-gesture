@@ -1,0 +1,332 @@
+[
+  {
+    "id": 0,
+    "name": "愚者",
+    "name_en": "The Fool",
+    "keywords": ["新开始", "冒险", "纯真"],
+    "upright": {
+      "title": "正位 · 愚者",
+      "reading": "一段新的旅程正在召唤你。此刻的你站在悬崖边缘，却携带着初心与勇气。不必恐惧未知，踏出这一步，命运自会指引方向。"
+    },
+    "reversed": {
+      "title": "逆位 · 愚者",
+      "reading": "鲁莽与逃避正在遮蔽你的判断。在迈出下一步前，请停下来审视内心——你是在勇敢前行，还是在逃避现实？"
+    },
+    "image": "/cards/00-fool.jpg"
+  },
+  {
+    "id": 1,
+    "name": "魔术师",
+    "name_en": "The Magician",
+    "keywords": ["意志", "创造", "显化"],
+    "upright": {
+      "title": "正位 · 魔术师",
+      "reading": "你已经拥有将想法化为现实的工具。此刻需要的不是等待更多条件，而是把意志、语言与行动对齐，让潜能真正落地。"
+    },
+    "reversed": {
+      "title": "逆位 · 魔术师",
+      "reading": "能量正在分散，或有人用华丽表象遮掩空洞承诺。请确认你的动机与资源是否真实，避免被操控或自我欺骗。"
+    },
+    "image": "/cards/01-magician.jpg"
+  },
+  {
+    "id": 2,
+    "name": "女祭司",
+    "name_en": "The High Priestess",
+    "keywords": ["直觉", "秘密", "内在"],
+    "upright": {
+      "title": "正位 · 女祭司",
+      "reading": "答案并不急于显形。请聆听梦境、身体与沉默带来的讯息，那些未被说出口的细节，正是你需要理解的真相。"
+    },
+    "reversed": {
+      "title": "逆位 · 女祭司",
+      "reading": "你可能忽略了直觉，或被过多外界声音牵引。暂时远离噪音，重新分辨哪些信息来自恐惧，哪些来自真正的洞察。"
+    },
+    "image": "/cards/02-high-priestess.jpg"
+  },
+  {
+    "id": 3,
+    "name": "皇后",
+    "name_en": "The Empress",
+    "keywords": ["丰盛", "滋养", "创造力"],
+    "upright": {
+      "title": "正位 · 皇后",
+      "reading": "丰盛正在生长，但它需要温柔的照料。给计划、关系或身体更多耐心，你所孕育的事物会以柔软却坚定的方式开花。"
+    },
+    "reversed": {
+      "title": "逆位 · 皇后",
+      "reading": "过度付出可能让你失去自身边界。请把滋养也留给自己，停止用耗尽来证明爱与价值。"
+    },
+    "image": "/cards/03-empress.jpg"
+  },
+  {
+    "id": 4,
+    "name": "皇帝",
+    "name_en": "The Emperor",
+    "keywords": ["秩序", "责任", "掌控"],
+    "upright": {
+      "title": "正位 · 皇帝",
+      "reading": "建立结构的时刻到了。清晰的规则、稳定的节奏与承担责任的姿态，会让混乱逐渐归位。"
+    },
+    "reversed": {
+      "title": "逆位 · 皇帝",
+      "reading": "控制欲或僵化规则正在压迫局面。真正的权威不靠强硬维持，而来自稳定、公正与愿意倾听。"
+    },
+    "image": "/cards/04-emperor.jpg"
+  },
+  {
+    "id": 5,
+    "name": "教皇",
+    "name_en": "The Hierophant",
+    "keywords": ["传统", "信念", "导师"],
+    "upright": {
+      "title": "正位 · 教皇",
+      "reading": "你正在寻找可被信任的体系。向有经验的人学习，回到价值观与长期承诺，会为当下的问题提供稳固答案。"
+    },
+    "reversed": {
+      "title": "逆位 · 教皇",
+      "reading": "旧规则未必适合此刻的你。请辨别哪些信念是真正的指引，哪些只是习惯性服从。"
+    },
+    "image": "/cards/05-hierophant.jpg"
+  },
+  {
+    "id": 6,
+    "name": "恋人",
+    "name_en": "The Lovers",
+    "keywords": ["选择", "关系", "契合"],
+    "upright": {
+      "title": "正位 · 恋人",
+      "reading": "关系与选择来到核心位置。真正的答案不只是喜欢什么，而是你愿意与什么价值、什么人、什么未来彼此承诺。"
+    },
+    "reversed": {
+      "title": "逆位 · 恋人",
+      "reading": "内在分裂让选择变得困难。若关系失衡，请先诚实面对需求差异，而不是用逃避维持表面和谐。"
+    },
+    "image": "/cards/06-lovers.jpg"
+  },
+  {
+    "id": 7,
+    "name": "战车",
+    "name_en": "The Chariot",
+    "keywords": ["推进", "胜利", "自律"],
+    "upright": {
+      "title": "正位 · 战车",
+      "reading": "前进的道路已经打开。只要你保持方向一致，驾驭冲突的力量，胜利会来自纪律与坚定。"
+    },
+    "reversed": {
+      "title": "逆位 · 战车",
+      "reading": "你可能用速度掩盖失控。请停下校准目标，否则再强的动力也会把你带向并非想去的地方。"
+    },
+    "image": "/cards/07-chariot.jpg"
+  },
+  {
+    "id": 8,
+    "name": "力量",
+    "name_en": "Strength",
+    "keywords": ["勇气", "温柔", "驯服"],
+    "upright": {
+      "title": "正位 · 力量",
+      "reading": "真正的强大并非压制，而是温柔地面对本能。你有能力安抚恐惧，让勇气从内心慢慢站起来。"
+    },
+    "reversed": {
+      "title": "逆位 · 力量",
+      "reading": "自我怀疑正在削弱你。不要急着证明强大，先承认脆弱，再重新找回与自己并肩的力量。"
+    },
+    "image": "/cards/08-strength.jpg"
+  },
+  {
+    "id": 9,
+    "name": "隐者",
+    "name_en": "The Hermit",
+    "keywords": ["独处", "探索", "智慧"],
+    "upright": {
+      "title": "正位 · 隐者",
+      "reading": "你需要一盏只照向内心的灯。暂时离开人群与喧嚣，答案会在安静的观察中逐渐清晰。"
+    },
+    "reversed": {
+      "title": "逆位 · 隐者",
+      "reading": "独处可能变成隔绝。若你已经远离世界太久，请让可信任的人靠近，智慧也需要交流来照亮。"
+    },
+    "image": "/cards/09-hermit.jpg"
+  },
+  {
+    "id": 10,
+    "name": "命运之轮",
+    "name_en": "Wheel of Fortune",
+    "keywords": ["转机", "循环", "命运"],
+    "upright": {
+      "title": "正位 · 命运之轮",
+      "reading": "局势正在转动。你未必能控制风向，但可以选择如何扬帆；顺势而为，会看见新的入口。"
+    },
+    "reversed": {
+      "title": "逆位 · 命运之轮",
+      "reading": "旧循环正在重复。若你感觉受困，请停止把一切归咎于运气，观察自己在哪一步再次做了相同选择。"
+    },
+    "image": "/cards/10-wheel-of-fortune.jpg"
+  },
+  {
+    "id": 11,
+    "name": "正义",
+    "name_en": "Justice",
+    "keywords": ["平衡", "真相", "因果"],
+    "upright": {
+      "title": "正位 · 正义",
+      "reading": "真相需要被清楚看见。以公平、证据与责任作为准绳，你会得到与行为相称的结果。"
+    },
+    "reversed": {
+      "title": "逆位 · 正义",
+      "reading": "偏见或逃避责任让天平倾斜。请不要只寻找对自己有利的解释，真正的修正来自诚实承担。"
+    },
+    "image": "/cards/11-justice.jpg"
+  },
+  {
+    "id": 12,
+    "name": "倒吊人",
+    "name_en": "The Hanged Man",
+    "keywords": ["暂停", "牺牲", "换位"],
+    "upright": {
+      "title": "正位 · 倒吊人",
+      "reading": "现在不是强行推进的时刻。暂停并非失败，而是让你从另一种角度看见真正重要的东西。"
+    },
+    "reversed": {
+      "title": "逆位 · 倒吊人",
+      "reading": "你可能困在无意义的等待里。若牺牲没有带来理解或成长，就需要重新决定是否继续悬挂。"
+    },
+    "image": "/cards/12-hanged-man.jpg"
+  },
+  {
+    "id": 13,
+    "name": "死神",
+    "name_en": "Death",
+    "keywords": ["结束", "蜕变", "释放"],
+    "upright": {
+      "title": "正位 · 死神",
+      "reading": "某个阶段正在结束。请允许旧身份、旧关系或旧执念离开，因为空出来的位置会迎接真正的新生。"
+    },
+    "reversed": {
+      "title": "逆位 · 死神",
+      "reading": "你正在抗拒必要的改变。越紧握已经枯萎的事物，越难感受到新生命靠近。"
+    },
+    "image": "/cards/13-death.jpg"
+  },
+  {
+    "id": 14,
+    "name": "节制",
+    "name_en": "Temperance",
+    "keywords": ["调和", "疗愈", "耐心"],
+    "upright": {
+      "title": "正位 · 节制",
+      "reading": "极端之间存在第三条路。放慢速度，调和彼此冲突的需求，疗愈会在稳定流动中发生。"
+    },
+    "reversed": {
+      "title": "逆位 · 节制",
+      "reading": "失衡让能量难以沉淀。你需要调整节奏、饮食、工作或情绪出口，让系统重新恢复流动。"
+    },
+    "image": "/cards/14-temperance.jpg"
+  },
+  {
+    "id": 15,
+    "name": "恶魔",
+    "name_en": "The Devil",
+    "keywords": ["束缚", "欲望", "阴影"],
+    "upright": {
+      "title": "正位 · 恶魔",
+      "reading": "某种诱惑或依赖正在牵制你。请看见锁链真正系在哪里，承认欲望，才可能重新获得选择权。"
+    },
+    "reversed": {
+      "title": "逆位 · 恶魔",
+      "reading": "束缚开始松动。你正在意识到自己并非毫无选择，只要愿意面对阴影，就能慢慢走出旧契约。"
+    },
+    "image": "/cards/15-devil.jpg"
+  },
+  {
+    "id": 16,
+    "name": "高塔",
+    "name_en": "The Tower",
+    "keywords": ["崩塌", "觉醒", "真相"],
+    "upright": {
+      "title": "正位 · 高塔",
+      "reading": "不稳固的结构会被闪电击中。震动虽然突然，却揭露了早已存在的裂缝；请让真实重建地基。"
+    },
+    "reversed": {
+      "title": "逆位 · 高塔",
+      "reading": "你可能预感到变化，却仍试图维持旧墙。越早承认问题，崩塌就越可能变成温和的重整。"
+    },
+    "image": "/cards/16-tower.jpg"
+  },
+  {
+    "id": 17,
+    "name": "星星",
+    "name_en": "The Star",
+    "keywords": ["希望", "祝福", "复原"],
+    "upright": {
+      "title": "正位 · 星星",
+      "reading": "黑夜之后，仍有星光回应你。请相信疗愈正在发生，愿望会以安静而清澈的方式重新点亮。"
+    },
+    "reversed": {
+      "title": "逆位 · 星星",
+      "reading": "希望被疲惫遮住了。不要急着否定未来，先照顾当下的伤口，让信念从微小的恢复开始。"
+    },
+    "image": "/cards/17-star.jpg"
+  },
+  {
+    "id": 18,
+    "name": "月亮",
+    "name_en": "The Moon",
+    "keywords": ["迷雾", "潜意识", "幻象"],
+    "upright": {
+      "title": "正位 · 月亮",
+      "reading": "前方有雾，感受比事实更强烈。请不要急于下结论，让隐藏的信息浮出水面，再决定该相信什么。"
+    },
+    "reversed": {
+      "title": "逆位 · 月亮",
+      "reading": "迷雾正在散去，但真相可能令人不安。保持清醒，辨认哪些恐惧已经不再支配你。"
+    },
+    "image": "/cards/18-moon.jpg"
+  },
+  {
+    "id": 19,
+    "name": "太阳",
+    "name_en": "The Sun",
+    "keywords": ["喜悦", "清晰", "成功"],
+    "upright": {
+      "title": "正位 · 太阳",
+      "reading": "光已经照进局面。坦诚、热情与清晰会带来成功，也提醒你允许自己被看见、被庆祝。"
+    },
+    "reversed": {
+      "title": "逆位 · 太阳",
+      "reading": "喜悦被云层遮挡，但太阳并未消失。请检查是否因为过度期待完美，而忽略了已经拥有的光。"
+    },
+    "image": "/cards/19-sun.jpg"
+  },
+  {
+    "id": 20,
+    "name": "审判",
+    "name_en": "Judgement",
+    "keywords": ["召唤", "觉醒", "更新"],
+    "upright": {
+      "title": "正位 · 审判",
+      "reading": "一个更高层次的召唤正在响起。回顾过去不是为了自责，而是为了整合经验，回应新的生命阶段。"
+    },
+    "reversed": {
+      "title": "逆位 · 审判",
+      "reading": "你可能害怕回应内在召唤。停止用旧错误定义自己，真正的更新从愿意原谅和重新选择开始。"
+    },
+    "image": "/cards/20-judgement.jpg"
+  },
+  {
+    "id": 21,
+    "name": "世界",
+    "name_en": "The World",
+    "keywords": ["完成", "整合", "圆满"],
+    "upright": {
+      "title": "正位 · 世界",
+      "reading": "旅程抵达一个完整的节点。你正在整合过去的努力，并准备把成熟的自己带入更广阔的世界。"
+    },
+    "reversed": {
+      "title": "逆位 · 世界",
+      "reading": "最后一步尚未真正完成。请检查还有什么未收尾、未告别或未承认，圆满需要完整的闭环。"
+    },
+    "image": "/cards/21-world.jpg"
+  }
+]
