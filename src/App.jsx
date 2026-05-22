@@ -70,7 +70,6 @@ function App() {
       case STEPS.QUESTION:
         return (
           <StepQuestion
-            gestureState={gestureState}
             question={flow.question}
             setQuestion={flow.setQuestion}
             onComplete={flow.completeQuestion}
@@ -104,15 +103,18 @@ function App() {
     }
   }
 
-  const hasCamera = flow.currentStep !== STEPS.PERMISSION
+  const shouldDetectGestures =
+    flow.currentStep === STEPS.SHUFFLE ||
+    flow.currentStep === STEPS.DRAW ||
+    flow.currentStep === STEPS.REVEAL
 
   return (
     <main className="app-shell">
       <ParticleBackground />
-      {hasCamera ? (
+      {shouldDetectGestures ? (
         <>
           <GestureDetector
-            enabled={hasCamera}
+            enabled={shouldDetectGestures}
             stream={cameraStream}
             statusLabel={detectorStatus}
             visible={flow.currentStep !== STEPS.REVEAL}

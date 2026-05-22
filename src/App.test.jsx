@@ -13,7 +13,7 @@ vi.mock('./components/GestureDetector', () => ({
 }))
 
 describe('App camera permission flow', () => {
-  it('keeps the granted camera stream for gesture detection', async () => {
+  it('waits for question confirmation before starting gesture detection', async () => {
     const stop = vi.fn()
     const stream = {
       getTracks: () => [{ stop }],
@@ -27,6 +27,13 @@ describe('App camera permission flow', () => {
 
     render(<App />)
     fireEvent.click(screen.getByRole('button', { name: '开启仪式' }))
+
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '确认问题，进入洗牌' })).toBeInTheDocument()
+    })
+
+    expect(screen.queryByTestId('gesture-detector')).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name: '确认问题，进入洗牌' }))
 
     await waitFor(() => {
       expect(screen.getByTestId('gesture-detector')).toHaveTextContent('camera-stream-ready')

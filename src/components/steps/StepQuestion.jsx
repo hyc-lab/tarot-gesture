@@ -1,19 +1,14 @@
-import { memo, useEffect, useRef, useState } from 'react'
+import { memo, useState } from 'react'
 import RitualText from '../ui/RitualText'
 
-function StepQuestion({ gestureState, onComplete, question, setQuestion }) {
-  const initialPrayerEventRef = useRef(gestureState.prayer.eventId)
+function StepQuestion({ onComplete, question, setQuestion }) {
   const [isComplete, setIsComplete] = useState(false)
-  const progress = gestureState.prayer.progress
 
-  useEffect(() => {
-    if (gestureState.prayer.eventId <= initialPrayerEventRef.current || isComplete) return
-
+  function handleConfirmQuestion() {
+    if (isComplete) return
     setIsComplete(true)
-    const timer = window.setTimeout(onComplete, 520)
-
-    return () => window.clearTimeout(timer)
-  }, [gestureState.prayer.eventId, isComplete, onComplete])
+    window.setTimeout(onComplete, 520)
+  }
 
   return (
     <section className="step-screen question-screen">
@@ -23,7 +18,7 @@ function StepQuestion({ gestureState, onComplete, question, setQuestion }) {
           as="h1"
           className="ritual-title"
           delay={42}
-          text="将你的问题注入双手，双手合十，屏息凝神"
+          text="将你的问题写下，确认后再唤醒手势仪式"
         />
         <label className="question-field">
           <span>你的问题</span>
@@ -35,14 +30,18 @@ function StepQuestion({ gestureState, onComplete, question, setQuestion }) {
         </label>
         <div
           className="hold-orb"
-          style={{ '--gesture-progress': `${Math.round(progress * 100)}%` }}
-          aria-label={`双手合十确认进度 ${Math.round(progress * 100)}%`}
+          style={{ '--gesture-progress': isComplete ? '100%' : '0%' }}
+          aria-label="问题确认仪式"
         >
-          <span>合十</span>
+          <span>确认</span>
         </div>
-        <p className="stage-copy">保持双手合十 2 秒，牌阵会记住你的提问。</p>
-        <button className="skip-button" type="button" onClick={onComplete}>
-          跳过手势，进入洗牌
+        <p className="stage-copy">确认问题后，摄像头小窗会开启，接下来再用手势洗牌。</p>
+        <button
+          className="glow-button question-confirm-button"
+          type="button"
+          onClick={handleConfirmQuestion}
+        >
+          {isComplete ? '正在进入洗牌…' : '确认问题，进入洗牌'}
         </button>
       </div>
     </section>

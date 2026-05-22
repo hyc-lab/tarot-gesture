@@ -1,7 +1,7 @@
 import { memo, useEffect, useRef } from 'react'
 import CameraView from './CameraView'
 
-const MEDIAPIPE_CDN = 'https://cdn.jsdelivr.net/npm/@mediapipe/hands/'
+const MEDIAPIPE_ASSET_BASE = `${import.meta.env.BASE_URL}mediapipe/hands/`
 
 function GestureDetector({
   enabled,
@@ -48,7 +48,7 @@ function GestureDetector({
 
         if (cancelled) return
 
-        onStatusChangeRef.current?.('model-loading')
+        onStatusChangeRef.current?.('preview')
 
         const [
           { Hands, HAND_CONNECTIONS },
@@ -61,7 +61,7 @@ function GestureDetector({
         if (cancelled) return
 
         hands = new Hands({
-          locateFile: (file) => `${MEDIAPIPE_CDN}${file}`,
+          locateFile: (file) => `${MEDIAPIPE_ASSET_BASE}${file}`,
         })
 
         hands.setOptions({
@@ -85,7 +85,7 @@ function GestureDetector({
       } catch (error) {
         if (!cancelled) {
           console.error('GestureDetector failed to start:', error)
-          onStatusChangeRef.current?.('error')
+          onStatusChangeRef.current?.(videoRef.current?.srcObject ? 'preview-only' : 'camera-error')
         }
       }
     }
@@ -116,7 +116,11 @@ function GestureDetector({
 
       video.muted = true
       video.playsInline = true
-      await video.play()
+      try {
+        await video.play()
+      } catch (error) {
+        console.warn('Camera preview play was blocked, continuing with attached stream:', error)
+      }
     }
 
     function scheduleFrame() {
@@ -134,7 +138,7 @@ function GestureDetector({
         } catch (error) {
           if (!cancelled) {
             console.error('GestureDetector frame failed:', error)
-            onStatusChangeRef.current?.('error')
+            onStatusChangeRef.current?.('preview-only')
           }
         } finally {
           isSendingFrame = false
