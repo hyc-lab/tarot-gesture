@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   GESTURE_HOLD_MS,
   getIndexTipPosition,
+  getSwipeDirection,
   isFist,
   isPrayer,
   isSwipe,
@@ -37,6 +38,12 @@ describe('gesture rules', () => {
   it('detects horizontal wrist swipes', () => {
     expect(isSwipe(0.5, 0.43)).toBe(true)
     expect(isSwipe(0.5, 0.47)).toBe(false)
+  })
+
+  it('detects mirrored swipe direction', () => {
+    expect(getSwipeDirection(0.58, 0.5)).toBe('LEFT')
+    expect(getSwipeDirection(0.42, 0.5)).toBe('RIGHT')
+    expect(getSwipeDirection(0.52, 0.5)).toBeNull()
   })
 
   it('mirrors index fingertip coordinates for the UI', () => {

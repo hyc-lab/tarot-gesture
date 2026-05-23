@@ -4,6 +4,7 @@ import {
   getIndexTipPosition,
   getPrayerHands,
   getPrimaryHand,
+  getSwipeDirection,
   isFist,
   isPrayer,
   isSwipe,
@@ -25,6 +26,7 @@ export const initialGestureState = {
   prayer: initialHold,
   fist: initialHold,
   swipe: {
+    direction: null,
     eventId: 0,
     lastAt: 0,
   },
@@ -134,6 +136,7 @@ export function useGesture() {
     const fistHold = updateHold(fistHoldRef, isFist(primaryHand), GESTURE_HOLD_MS.FIST, now)
     const indexTip = getIndexTipPosition(primaryHand)
     const currentWristX = primaryHand ? 1 - primaryHand[0].x : null
+    const swipeDirection = getSwipeDirection(currentWristX, previousWristXRef.current)
     const swipeDetected =
       currentWristX !== null &&
       isSwipe(currentWristX, previousWristXRef.current) &&
@@ -164,6 +167,7 @@ export function useGesture() {
           : currentState.fist.eventId,
       },
       swipe: {
+        direction: swipeDetected ? swipeDirection : currentState.swipe.direction,
         eventId: swipeDetected ? currentState.swipe.eventId + 1 : currentState.swipe.eventId,
         lastAt: swipeDetected ? now : currentState.swipe.lastAt,
       },

@@ -79,6 +79,7 @@ describe('useGesture', () => {
     })
 
     expect(result.current.gestureState.swipe.eventId).toBe(1)
+    expect(result.current.gestureState.swipe.direction).toBe('RIGHT')
     expect(result.current.gestureState.indexTip).toEqual({ x: 0.75, y: 0.7 })
 
     nowSpy.mockReturnValue(2350)

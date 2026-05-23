@@ -5,6 +5,7 @@ export const GESTURE_HOLD_MS = {
 }
 
 export const SWIPE_THRESHOLD = 0.06
+export const DIRECTIONAL_SWIPE_THRESHOLD = 0.05
 
 export function isPrayer(leftHand, rightHand) {
   if (!leftHand || !rightHand) return false
@@ -19,6 +20,17 @@ export function isSwipe(currentWristX, previousWristX) {
   }
 
   return Math.abs(currentWristX - previousWristX) > SWIPE_THRESHOLD
+}
+
+export function getSwipeDirection(currentWristX, previousWristX) {
+  if (typeof currentWristX !== 'number' || typeof previousWristX !== 'number') {
+    return null
+  }
+
+  const delta = currentWristX - previousWristX
+  if (delta > DIRECTIONAL_SWIPE_THRESHOLD) return 'LEFT'
+  if (delta < -DIRECTIONAL_SWIPE_THRESHOLD) return 'RIGHT'
+  return null
 }
 
 export function getIndexTipPosition(hand) {

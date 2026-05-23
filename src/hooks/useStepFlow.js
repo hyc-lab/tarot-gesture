@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useState } from 'react'
 import tarotDeck from '../data/tarot.json'
 
+export const DRAW_CANDIDATE_COUNT = 9
+
 export const STEPS = {
   PERMISSION: 'permission',
   QUESTION: 'question',
@@ -18,6 +20,14 @@ export function drawRandomArcana(deck = tarotDeck, random = Math.random) {
   }
 }
 
+export function drawCarouselArcana(
+  deck = tarotDeck,
+  random = Math.random,
+  candidateCount = DRAW_CANDIDATE_COUNT,
+) {
+  return Array.from({ length: candidateCount }, () => drawRandomArcana(deck, random))
+}
+
 export function useStepFlow(deck = tarotDeck, random = Math.random) {
   const [currentStep, setCurrentStep] = useState(STEPS.PERMISSION)
   const [question, setQuestion] = useState('')
@@ -33,14 +43,26 @@ export function useStepFlow(deck = tarotDeck, random = Math.random) {
   }, [])
 
   const completeShuffle = useCallback(() => {
-    const draw = drawRandomArcana(deck, random)
-    setPendingDraw(draw)
+    const carouselDraws = drawCarouselArcana(deck, random)
+    setPendingDraw({
+      cards: carouselDraws,
+      selectedIndex: 0,
+    })
     setRevealedDraw(null)
     setCurrentStep(STEPS.DRAW)
   }, [deck, random])
 
-  const revealPendingCard = useCallback(() => {
-    setRevealedDraw((currentReveal) => currentReveal ?? pendingDraw)
+  const revealPendingCard = useCallback((selectedIndex = pendingDraw?.selectedIndex ?? 0) => {
+    const selectedDraw = pendingDraw?.cards?.[selectedIndex] ?? pendingDraw
+    setPendingDraw((currentDraw) => {
+      if (!currentDraw?.cards) return currentDraw
+
+      return {
+        ...currentDraw,
+        selectedIndex,
+      }
+    })
+    setRevealedDraw((currentReveal) => currentReveal ?? selectedDraw)
     setCurrentStep(STEPS.REVEAL)
   }, [pendingDraw])
 

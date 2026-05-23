@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 import tarotDeck from '../data/tarot.json'
-import { STEPS, drawRandomArcana, useStepFlow } from './useStepFlow'
+import { DRAW_CANDIDATE_COUNT, STEPS, drawRandomArcana, useStepFlow } from './useStepFlow'
 
 describe('tarot data', () => {
   it('contains all 22 major arcana cards with sequential ids', () => {
@@ -12,7 +12,7 @@ describe('tarot data', () => {
 
 describe('useStepFlow', () => {
   it('moves through permission, question, shuffle, draw, and reveal', () => {
-    const random = vi.fn().mockReturnValueOnce(0.1).mockReturnValueOnce(0.2)
+    const random = vi.fn().mockReturnValue(0.1)
     const { result } = renderHook(() => useStepFlow(tarotDeck, random))
 
     expect(result.current.currentStep).toBe(STEPS.PERMISSION)
@@ -25,10 +25,11 @@ describe('useStepFlow', () => {
 
     act(() => result.current.completeShuffle())
     expect(result.current.currentStep).toBe(STEPS.DRAW)
-    expect(result.current.pendingDraw.card.id).toBe(2)
-    expect(result.current.pendingDraw.isReversed).toBe(true)
+    expect(result.current.pendingDraw.cards).toHaveLength(DRAW_CANDIDATE_COUNT)
+    expect(result.current.pendingDraw.cards[0].card.id).toBe(2)
+    expect(result.current.pendingDraw.cards[0].isReversed).toBe(true)
 
-    act(() => result.current.revealPendingCard())
+    act(() => result.current.revealPendingCard(0))
     expect(result.current.currentStep).toBe(STEPS.REVEAL)
     expect(result.current.revealedDraw.card.id).toBe(2)
 
